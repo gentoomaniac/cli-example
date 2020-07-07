@@ -30,7 +30,12 @@ and usage of using your command. For example:
 
 Fizz is the first part of the FizzBuzz game`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("fizz called")
+		buzz, _ := cmd.Flags().GetBool("buzz")
+		if buzz {
+			fmt.Println("fizz --buzz")
+		} else {
+			fmt.Println("fizz")
+		}
 	},
 }
 
@@ -45,5 +50,5 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// fizzCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	fizzCmd.Flags().BoolP("buzz", "b", false, "the buzz toggle")
 }
